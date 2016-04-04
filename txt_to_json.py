@@ -20,6 +20,7 @@ def update_dict(results, regex, text, date):
     	if item in people:
             item_cleaned = re.split('[:;]', item.split('\n')[1])[0]
             results[item_cleaned][date].append(r[i+1])
+    print people
     return results
 
 
@@ -30,8 +31,12 @@ def main(datadir):
         f = codecs.open(datadir + "/" + filename, 'r', encoding='utf-8')
         text = f.read()
         date = filename.split('.')[0]
-        results = update_dict(results, r'(\nM[rs]{1,2}\. [A-Z][\w\']*\.|[\n][A-Z]*[:;]|[\n][A-Z]\w*[:;])', text, date)
-    print results
+        results = update_dict(results, r'(\nM[RSrs]{1,2}\. [A-Z][\w\']*[\.:;]|[\n][A-Z]*[:;]|[\n][A-Z]\w*[:;]|\nThe President\.|\nSenator Dole\.)', text, date)
+    year = datadir.split('/')[0]
+    debate = datadir.split('/')[1]
+    new_file = open('data/' + year + '_' + debate + '.json', "w")
+    new_file.write(json.dumps(results))
+    new_file.close()
 
 if __name__ == '__main__':
 	parser = argparse.ArgumentParser()
