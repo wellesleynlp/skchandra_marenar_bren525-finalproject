@@ -22,6 +22,7 @@ def update_dict(results, regex, text, date):
             results[item_cleaned][date].append(r[i+1])
     return results
 
+
 def main(datadir):
     files = os.listdir(datadir)
     results = {}
@@ -29,7 +30,7 @@ def main(datadir):
         f = codecs.open(datadir + "/" + filename, 'r', encoding='utf-8')
         text = f.read()
         date = filename.split('.')[0]
-        results = update_dict(results, r'([\n][A-Z][A-Z]*[a-z]*[. \n]*[A-Z]*[a-z]*[A-Z]*[:;])', text, date)
+        results = update_dict(results, r'(\nM[rs]{1,2}\. [A-Z][\w\']*\.|[\n][A-Z]*[:;]|[\n][A-Z]\w*[:;])', text, date)
     print results
 
 if __name__ == '__main__':
