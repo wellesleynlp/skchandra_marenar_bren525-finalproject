@@ -29,7 +29,13 @@ def main(datadir):
         f = codecs.open(datadir + "/" + filename, 'r', encoding='utf-8')
         text = f.read()
         date = filename.split('.')[0]
-        results = update_dict(results, r'([\n][A-Z][A-Z]*[a-z]*[. \n]*[A-Z]*[a-z]*[A-Z]*[:;.])', text, date)
+        results = update_dict(results, r'([\n][A-Z][A-Z]*[a-z]*[. \n]*[A-Z]*[a-z]*[A-Z]*[:;])', text, date)
+    print results.keys()
+    year = datadir.split('/')[0]
+    debate = datadir.split('/')[1]
+    new_file = open('data/' + year + '_' + debate + '.json', "w")
+    new_file.write(json.dumps(results))
+    new_file.close()
 
 if __name__ == '__main__':
 	parser = argparse.ArgumentParser()
