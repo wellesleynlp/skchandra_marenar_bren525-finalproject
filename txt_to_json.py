@@ -23,9 +23,8 @@ def update_dict(results, regex, text, date):
     return results
 
 def main(datadir):
-    files = os.listdir(datadir)
     results = {}
-    for filename in files: 
+    for filename in os.listdir(datadir): 
         f = codecs.open(datadir + "/" + filename, 'r', encoding='utf-8')
         text = f.read()
         date = filename.split('.')[0]
