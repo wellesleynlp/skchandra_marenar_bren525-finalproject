@@ -4,26 +4,34 @@ import codecs
 import json
 import re
 
-def search(regex, text):
+def update_dict(results, regex, text, date):
     """Find all matches of regex in the provided text"""
     regexp = re.compile(regex)
     people = set()
-    results = {}
     for phrase in regexp.findall(text):
-    	people.add(phrase)
+    	cleaned = re.split('[:;]', phrase)[0]
+    	people.add(cleaned)
+    for person in people:
+    	if person not in results:
+    		results[person] = {}
+    	results[person][date] = []
     r = re.split(regex, text)
     for i, item in enumerate(r):
-    	print item
-    print "boop"
+    	item_cleaned = re.split('[:;]', item)[0]
+    	if item_cleaned in people:
+            print item_cleaned
+            results[item_cleaned][date].append(r[i+1])
+    return results
 
 def main(datadir):
-	path = datadir + '/train'
-	files = os.listdir(path)
+	files = os.listdir(datadir)
+	results = {}
 	for filename in files: 
-		f = codecs.open(path + "/" + filename, 'r', encoding='utf-8')
+		f = codecs.open(datadir + "/" + filename, 'r', encoding='utf-8')
 		text = f.read()
-		search(r'([A-Z][A-Z]*[. \n]*[A-Z]*[:;])', text)
-
+		date = filename.split('.')[0]
+		results = update_dict(results, r'([A-Z][A-Z]*[. \n]*[A-Z]*[:;])', text, date)
+	
 if __name__ == '__main__':
 	parser = argparse.ArgumentParser()
 	parser.add_argument("datadir", help="directory where dataset is located", type=str)
