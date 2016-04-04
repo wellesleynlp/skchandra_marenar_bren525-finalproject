@@ -29,8 +29,7 @@ def main(datadir):
         f = codecs.open(datadir + "/" + filename, 'r', encoding='utf-8')
         text = f.read()
         date = filename.split('.')[0]
-        results = update_dict(results, r'([\n][A-Z][A-Z]*[a-z]*[. \n]*[A-Z]*[a-z]*[A-Z]*[:;])', text, date)
-    print results
+        results = update_dict(results, r'([\n][A-Z][A-Z]*[a-z]*[. \n]*[A-Z]*[a-z]*[A-Z]*[:;.])', text, date)
 
 if __name__ == '__main__':
 	parser = argparse.ArgumentParser()
