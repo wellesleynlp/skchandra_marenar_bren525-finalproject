@@ -8,7 +8,6 @@ from collections import defaultdict
 def build_reverse_dict(aliases):
 	reverse_aliases = defaultdict(lambda: {})
 	for date, a in dict.iteritems(aliases):
-		reverse_aliases[date] = {}
 		for name, alias_list in dict.iteritems(a):
 			for item in alias_list:
 				reverse_aliases[date][item] = name
