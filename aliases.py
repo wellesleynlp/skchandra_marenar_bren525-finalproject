@@ -9,6 +9,36 @@ def main():
 	# Presidential
 	aliases['1976']['Gerald Ford'] = [u'THE PRESIDENT.', u'Gerald Ford']
 	aliases['1976']['Jimmy Carter'] = [u'MR. CATER.', u'MR. CARTER.', u'Jimmy Carter']
+	# Presidential
+	aliases['1980']['Ronald Reagan'] = [u'REAGAN', u'GOV. RONALD REAGAN', u'GOVERNOR REAGAN.']
+	aliases['1980']['John Anderson'] = [u'ANDERSON', u'REP. JOHN B. ANDERSON']
+	aliases['1980']['Jimmy Carter'] = [u'THE PRESIDENT.']
+	# Presidential
+	aliases['1984']['Ronald Reagan'] = [u'The President.',u'Mr. President.']
+	aliases['1984']['Walter F. Mondale'] = [u'Mr. Mondale.']
+	# Presidential
+	aliases['1988']['George H. W. Bush'] = [u'BUSH']
+	aliases['1988']['Michael Dukakis'] = [u'DUKAKIS']
+	# Presidential
+	aliases['1992']['Bill Clinton'] = [u'Governor Clinton.']
+	aliases['1992']['George H. W. Bush'] = [u'President Bush.', u'Mr. President.']
+	aliases['1992']['Ross Perot'] = [u'Mr. Perot.']
+	# Presidential
+	aliases['1996']['Bill Clinton'] = [u'The President.', u'Mr. President.']
+	aliases['1996']['Bob Dole'] = [u'Senator Dole.']
+	# Democratic
+	aliases['2000']['Al Gore'] = [u'Gore']
+	aliases['2000']['Bill Bradley'] = [u'Bradley', u'Senator Bradley.']
+	# Presidential
+	aliases['2000']['George W. Bush'] = [u'BUSH']
+	aliases['2000']['Al Gore'] = [u'GORE']
+	# Republican
+	aliases['2000']['George W. Bush'] = [u'Bush', u'BUSH', u'Governor Bush.']
+	aliases['2000']['Gary Bauer'] = [u'Mr. Bauer.', u'Bauer', u'GARY BAUER', u'BAUER']
+	aliases['2000']['Steve Forbes'] = [u'Forbes', u'Mr. Forbes.', u'STEVE FORBES', u'FORBES']
+	aliases['2000']['Orrin Hatch'] = [u'HATCH', u'Hatch', u'Senator Hatch.', u'SEN. ORRIN HATCH', u'Mr. Hatch.']
+	aliases['2000']['Alan Keyes'] = [u'Mr. Keyes.', u'KEYES', u'ALAN KEYES', u'Keyes']
+	aliases['2000']['John McCain'] = [u'MCCAIN', u'SENATOR JOHN McCAIN', u'McCain', u'McCAIN', u'SEN. JOHN McCAIN']
 	# Democratic
 	aliases['2004']['Wesley Clark'] = [ u'GEN. WESELEY CLARK, (D) PRESIDENTIAL CANDIDATE', u'CLARK', u'Wesley Clark']
 	aliases['2004']['John Edwards'] = [ u'SEN. JOHN EDWARDS, (D-NC) PRESIDENTIAL CANDIDATE', u'EDWARDS', u'John Edwards']
