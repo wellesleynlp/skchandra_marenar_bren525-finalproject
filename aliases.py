@@ -27,18 +27,16 @@ def main():
 	aliases['1996']['Bill Clinton'] = [u'The President.', u'Mr. President.', u'Bill Clinton']
 	aliases['1996']['Bob Dole'] = [u'Senator Dole.', u'Bob Dole']
 	# Democratic
-	aliases['2000']['Al Gore'] = [u'Gore']
 	aliases['2000']['Bill Bradley'] = [u'Bradley', u'Senator Bradley.', u'Bill Bradley']
 	# Presidential
-	aliases['2000']['George W. Bush'] = [u'BUSH']
-	aliases['2000']['Al Gore'] = [u'GORE']
+	aliases['2000']['George W. Bush'] = [u'Bush', u'BUSH', u'Governor Bush.', u'George W. Bush']
+	aliases['2000']['Al Gore'] = [u'GORE', u'Gore', u'Al Gore']
 	# Republican
-	aliases['2000']['George W. Bush'] = [u'Bush', u'BUSH', u'Governor Bush.']
-	aliases['2000']['Gary Bauer'] = [u'Mr. Bauer.', u'Bauer', u'GARY BAUER', u'BAUER']
-	aliases['2000']['Steve Forbes'] = [u'Forbes', u'Mr. Forbes.', u'STEVE FORBES', u'FORBES']
-	aliases['2000']['Orrin Hatch'] = [u'HATCH', u'Hatch', u'Senator Hatch.', u'SEN. ORRIN HATCH', u'Mr. Hatch.']
-	aliases['2000']['Alan Keyes'] = [u'Mr. Keyes.', u'KEYES', u'ALAN KEYES', u'Keyes']
-	aliases['2000']['John McCain'] = [u'MCCAIN', u'SENATOR JOHN McCAIN', u'McCain', u'McCAIN', u'SEN. JOHN McCAIN']
+	aliases['2000']['Gary Bauer'] = [u'Mr. Bauer.', u'Bauer', u'GARY BAUER', u'BAUER', u'Gary Bauer']
+	aliases['2000']['Steve Forbes'] = [u'Forbes', u'Mr. Forbes.', u'STEVE FORBES', u'FORBES', u'Steve Forbes']
+	aliases['2000']['Orrin Hatch'] = [u'HATCH', u'Hatch', u'Senator Hatch.', u'SEN. ORRIN HATCH', u'Mr. Hatch.', u'Orrin Hatch']
+	aliases['2000']['Alan Keyes'] = [u'Mr. Keyes.', u'KEYES', u'ALAN KEYES', u'Keyes', u'Alan Keyes']
+	aliases['2000']['John McCain'] = [u'MCCAIN', u'SENATOR JOHN McCAIN', u'McCain', u'McCAIN', u'SEN. JOHN McCAIN', u'John McCain']
 	# Democratic
 	aliases['2004']['Wesley Clark'] = [ u'GEN. WESELEY CLARK, (D) PRESIDENTIAL CANDIDATE', u'CLARK', u'Wesley Clark']
 	aliases['2004']['John Edwards'] = [ u'SEN. JOHN EDWARDS, (D-NC) PRESIDENTIAL CANDIDATE', u'EDWARDS', u'John Edwards']
@@ -75,6 +73,7 @@ def main():
 
 	aliases['2012']['Barack Obama'] = [u'Barack Obama']
 	aliases['2012']['Mitt Romney'] = [u'Mitt Romney']
+
 	aliases['2012']['Michele Bachmann'] = [u'Michele Bachmann']
 	aliases['2012']['Herman Cain'] = [u'Herman Cain']
 	aliases['2012']['Newt Gingrich'] = [u'Newt Gingrich']
@@ -86,6 +85,7 @@ def main():
 	aliases['2012']['Gary Johnson'] = [u'Rick Johnson']
 	aliases['2012']['Fred Karger'] = [u'Fred Karger']
 	aliases['2012']['Buddy Roemer'] = [u'Buddy Roemer']
+
 	aliases['2016']['Donald Trump'] = [u'Donald Trump']
 	aliases['2016']['Ted Cruz'] = [u'Ted Cruz']
 	aliases['2016']['Marco Rubio'] = [u'Marco Rubio']
