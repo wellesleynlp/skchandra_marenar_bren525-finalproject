@@ -3,10 +3,14 @@
 import scipy
 import scipy.sparse.linalg
 import numpy
+from collections import defaultdict
+import json
+import codecs
+from nltk.corpus import stopwords
 
 __author__='Your name here'
 
-def tfidf_docterm(filename, freqthresh):
+def tfidf_docterm(corpus, freqthresh):
     """Estimate document-term TF-IDF vectors for each document (line in filename),
     where each column is a word, in decreasing order of frequency.
     Ignore words that appear fewer than freqthresh times.
@@ -16,16 +20,41 @@ def tfidf_docterm(filename, freqthresh):
     where row i is the vector for the ith document in filename,
     and col j represents the jth word in the above list.
     """
-    text, wordcounts = parsetextfile(filename) # read text and get word frequencies
-    sorted_words = sorted(filter(lambda x: wordcounts[x] >= freqthresh, wordcounts.keys()), key = lambda x: wordcounts[x], reverse = True)
+    tfidf_dict = dict()
+    candidate_dict = {}
+    wordcounts = defaultdict(int)
+    new_corpus = []
+    for candidate in corpus.keys(): 
+        debates = [debate for debates in corpus[candidate].values() for debate in debates]
+        for word in debates:
+                if word not in common:
+                    wordcounts[word] +=1
+        new_corpus.append([candidate, debates])
+    
+    sorted_words = sorted(filter(lambda x: wordcounts[x] >= freqthresh, wordcounts.keys()), key=lambda x: wordcounts[x], reverse=True)
     thresholded_words = set(sorted_words)
     word_indices = dict((word, index) for index, word in enumerate(sorted_words))
-    context = numpy.zeros((len(text), len(sorted_words)))
-    for di, doc in enumerate(text):
-        for word in doc:
-            if word in thresholded_words:
-                context[di,word_indices[word]] += 1
-    return [sorted_words, context]
+    context = numpy.zeros((len(new_corpus), len(sorted_words)))
+    for di, doc in enumerate(new_corpus):
+        for word in doc[1]:
+            try:
+                print word
+                if word in thresholded_words:
+                    context[di,word_indices[word]] +=1
+            except: 
+                pass
+        tfidf_dict[doc[0]] = [sorted_words, context]
+    return tfidf_dict
+
+f = codecs.open('data/parsed.json', 'r', encoding='utf-8')
+data = json.load(f)
+f.close()
+
+common = stopwords.words('english')
+
+tdidf_vectors = tfidf_docterm(data,100)
+#print tdidf_vectors
+print len(tdidf_vectors['Howard Dean'][0])
 
 def dimensionality_reduce(vectors, ndims):
     """Apply SVD on original sparse matrix, return reduced vectors."""
@@ -33,3 +62,4 @@ def dimensionality_reduce(vectors, ndims):
     U, s, Vh = scipy.sparse.linalg.svds(vectors, k=ndims)
     sigmatrix = scipy.matrix(scipy.diag(s))
     return U * sigmatrix
+
