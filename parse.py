@@ -28,7 +28,8 @@ def main(datadir):
 					exclude = exclude | {"`", "--", "'", "..."}
 					s = [word for sentence in words for word in sentence if word not in exclude]
 					election_name = name + " " + election_type + " " + year
-					megadict[election_name][date] = s
+					if election_name != "Hillary Clinton republican 2008":
+						megadict[election_name][date] = s
 	newf = codecs.open('parsed.json' , 'w', encoding='utf-8')
 	newf.write(json.dumps(megadict))
 	newf.close()
