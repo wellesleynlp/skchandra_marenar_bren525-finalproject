@@ -8,10 +8,12 @@ from nltk import word_tokenize, sent_tokenize
 from string import punctuation
 
 def main(datadir):
-	testing = ['2016', '2008', '1976', '1984', '1992', '2000']
+	testing = ['2016', '1976', '1984', '1992', '2000']
 	megadict = defaultdict(lambda: {})
 	for filename in os.listdir(datadir):
-		year = filename.split('_')[0]
+		split_name = filename.split('_')
+		year = split_name[0]
+		election_type = split_name[1].split('.')[0]
 		f = codecs.open(datadir + '/' + filename, 'r', encoding='utf-8')
 		data = json.load(f)
 		f.close()
@@ -25,7 +27,8 @@ def main(datadir):
 					exclude = set(punctuation)
 					exclude = exclude | {"`", "--", "'", "..."}
 					s = [word for sentence in words for word in sentence if word not in exclude]
-					megadict[name][date] = s
+					election_name = name + " " + election_type + " " + year
+					megadict[election_name][date] = s
 	newf = codecs.open('parsed.json' , 'w', encoding='utf-8')
 	newf.write(json.dumps(megadict))
 	newf.close()
