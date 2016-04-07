@@ -10,25 +10,25 @@ def main():
 	aliases['1976']['Gerald Ford'] = [u'THE PRESIDENT.', u'Gerald Ford']
 	aliases['1976']['Jimmy Carter'] = [u'MR. CATER.', u'MR. CARTER.', u'Jimmy Carter']
 	# Presidential
-	aliases['1980']['Ronald Reagan'] = [u'REAGAN', u'GOV. RONALD REAGAN', u'GOVERNOR REAGAN.']
-	aliases['1980']['John Anderson'] = [u'ANDERSON', u'REP. JOHN B. ANDERSON']
-	aliases['1980']['Jimmy Carter'] = [u'THE PRESIDENT.']
+	aliases['1980']['Ronald Reagan'] = [u'REAGAN', u'GOV. RONALD REAGAN', u'GOVERNOR REAGAN.', u'Ronald Reagan']
+	aliases['1980']['John Anderson'] = [u'ANDERSON', u'REP. JOHN B. ANDERSON', u'John Anderson']
+	aliases['1980']['Jimmy Carter'] = [u'THE PRESIDENT.', u'Jimmy Carter']
 	# Presidential
-	aliases['1984']['Ronald Reagan'] = [u'The President.',u'Mr. President.']
-	aliases['1984']['Walter F. Mondale'] = [u'Mr. Mondale.']
+	aliases['1984']['Ronald Reagan'] = [u'The President.',u'Mr. President.', u'Ronald Reagan']
+	aliases['1984']['Walter F. Mondale'] = [u'Mr. Mondale.', u'Walter F. Mondale']
 	# Presidential
-	aliases['1988']['George H. W. Bush'] = [u'BUSH']
-	aliases['1988']['Michael Dukakis'] = [u'DUKAKIS']
+	aliases['1988']['George H. W. Bush'] = [u'BUSH', u'George H. W. Bush']
+	aliases['1988']['Michael Dukakis'] = [u'DUKAKIS', u'Michael Dukakis']
 	# Presidential
-	aliases['1992']['Bill Clinton'] = [u'Governor Clinton.']
-	aliases['1992']['George H. W. Bush'] = [u'President Bush.', u'Mr. President.']
-	aliases['1992']['Ross Perot'] = [u'Mr. Perot.']
+	aliases['1992']['Bill Clinton'] = [u'Governor Clinton.', u'Bill Clinton']
+	aliases['1992']['George H. W. Bush'] = [u'President Bush.', u'Mr. President.', u'George H. W. Bush']
+	aliases['1992']['Ross Perot'] = [u'Mr. Perot.', u'Ross Perot']
 	# Presidential
-	aliases['1996']['Bill Clinton'] = [u'The President.', u'Mr. President.']
-	aliases['1996']['Bob Dole'] = [u'Senator Dole.']
+	aliases['1996']['Bill Clinton'] = [u'The President.', u'Mr. President.', u'Bill Clinton']
+	aliases['1996']['Bob Dole'] = [u'Senator Dole.', u'Bob Dole']
 	# Democratic
 	aliases['2000']['Al Gore'] = [u'Gore']
-	aliases['2000']['Bill Bradley'] = [u'Bradley', u'Senator Bradley.']
+	aliases['2000']['Bill Bradley'] = [u'Bradley', u'Senator Bradley.', u'Bill Bradley']
 	# Presidential
 	aliases['2000']['George W. Bush'] = [u'BUSH']
 	aliases['2000']['Al Gore'] = [u'GORE']
