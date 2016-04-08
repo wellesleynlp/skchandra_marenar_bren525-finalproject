@@ -38,7 +38,7 @@ def tfidf_docterm(corpus, freqthresh):
     for di, doc in enumerate(new_corpus):
         for word in doc[1]:
             try:
-                print word
+                #print word
                 if word in thresholded_words:
                     context[di,word_indices[word]] +=1
             except: 
@@ -46,15 +46,19 @@ def tfidf_docterm(corpus, freqthresh):
         tfidf_dict[doc[0]] = [sorted_words, context]
     return tfidf_dict
 
-f = codecs.open('data/parsed.json', 'r', encoding='utf-8')
+f = codecs.open('parsed.json', 'r', encoding='utf-8')
 data = json.load(f)
 f.close()
 
 common = stopwords.words('english')
 
-tdidf_vectors = tfidf_docterm(data,100)
-#print tdidf_vectors
-print len(tdidf_vectors['Howard Dean'][0])
+tfidf_vectors = tfidf_docterm(data,100)
+
+#print tfidf_vectors.keys()
+print tfidf_vectors['Hillary Clinton democratic 2008'][1]
+
+def random_forest(tdidf_vectors):
+    pass
 
 def dimensionality_reduce(vectors, ndims):
     """Apply SVD on original sparse matrix, return reduced vectors."""
