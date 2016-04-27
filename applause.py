@@ -5,7 +5,7 @@ import re
 import indicoio
 indicoio.config.api_key = '83ee5c7e4241e14b4b21d3a9f31fca8c'
 
-newf = codecs.open('full_parsed.json' , 'r', encoding='utf-8')
+newf = codecs.open('full_text.json' , 'r', encoding='utf-8')
 f = json.load(newf)
 
 def search(regex,text):
