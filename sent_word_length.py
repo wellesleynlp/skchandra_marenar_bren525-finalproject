@@ -3,7 +3,7 @@ import json
 from nltk import sent_tokenize, word_tokenize
 from collections import defaultdict
 
-newf = codecs.open('full_parsed.json' , 'r', encoding='utf-8')
+newf = codecs.open('full_text.json' , 'r', encoding='utf-8')
 f = json.load(newf)
 
 avg_length = defaultdict(list)
