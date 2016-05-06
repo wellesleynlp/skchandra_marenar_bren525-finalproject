@@ -35,5 +35,9 @@ def find_anaphora_epistrophe():
 		aedict[candidates][1] += float(ecount) / length if length > 0 else ecount
 	print aedict
 
+	newf = codecs.open('anaphora_epistrophe.json' , 'w', encoding='utf-8')
+	newf.write(json.dumps(aedict))
+	newf.close()
+
 if __name__ == '__main__':
 	find_anaphora_epistrophe()
