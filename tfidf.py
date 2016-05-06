@@ -2,13 +2,15 @@
 
 import scipy
 import scipy.sparse.linalg
+from scipy.spatial.distance import cdist
 import numpy
 from collections import defaultdict
 import json
 import codecs
 from nltk.corpus import stopwords
+from sklearn.feature_extraction.text import CountVectorizer
 
-__author__='Your name here'
+
 
 def tfidf_docterm(corpus, freqthresh):
     """Estimate document-term TF-IDF vectors for each document (line in filename),
@@ -20,11 +22,16 @@ def tfidf_docterm(corpus, freqthresh):
     where row i is the vector for the ith document in filename,
     and col j represents the jth word in the above list.
     """
+    common = stopwords.words('english')
     tfidf_dict = dict()
     candidate_dict = {}
     wordcounts = defaultdict(int)
     new_corpus = []
+    labels = []
     for candidate in corpus.keys(): 
+        if candidate == 'Hillary Clinton republican 2008':
+            continue
+        labels.append(candidate)
         debates = [debate for debates in corpus[candidate].values() for debate in debates]
         for word in debates:
                 if word not in common:
@@ -43,27 +50,17 @@ def tfidf_docterm(corpus, freqthresh):
                     context[di,word_indices[word]] +=1
             except: 
                 pass
-        tfidf_dict[doc[0]] = [sorted_words, context]
-    return tfidf_dict
+    return [sorted_words, context, labels]
 
-f = codecs.open('parsed.json', 'r', encoding='utf-8')
-data = json.load(f)
-f.close()
+if __name__ == "__main__":
+    f = codecs.open('full_parsed.json', 'r', encoding='utf-8')
+    data = json.load(f)
+    f.close()
 
-common = stopwords.words('english')
-
-tfidf_vectors = tfidf_docterm(data,100)
-
-#print tfidf_vectors.keys()
-print tfidf_vectors['Hillary Clinton democratic 2008'][1]
-
-def random_forest(tdidf_vectors):
-    pass
-
-def dimensionality_reduce(vectors, ndims):
-    """Apply SVD on original sparse matrix, return reduced vectors."""
-    # Do not modify
-    U, s, Vh = scipy.sparse.linalg.svds(vectors, k=ndims)
-    sigmatrix = scipy.matrix(scipy.diag(s))
-    return U * sigmatrix
-
+    tfidf_vectors = tfidf_docterm(data,50)
+    vectors = tfidf_vectors[1].tolist()
+    names = tfidf_vectors[2]
+    
+    newf = codecs.open('tfidf_vectors.json' , 'w', encoding='utf-8')
+    newf.write(json.dumps(dict(zip(names,vectors))))
+    newf.close()
