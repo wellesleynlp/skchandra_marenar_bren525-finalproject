@@ -21,7 +21,6 @@ laughter = {}
 applause = {}
 
 for candidate,dates in f.iteritems():
-	print candidate
 	for date,speech in dates.iteritems():
 		r1 = search(r'([\w|\'|\-|\, ]*\.){1,3} ?(?=\[Applause\])',speech)
 		r2 = search(r'([\w|\'|\-|\, ]*\.){1,3} ?(?=\[applause\])',speech)
@@ -33,8 +32,10 @@ for candidate,dates in f.iteritems():
 		r7 = search(r'([\w|\'|\-|\, ]*\.){1,3} ?(?=\(Laughter\))',speech)
 		r8 = search(r'([\w|\'|\-|\, ]*\.){1,3} ?(?=\(laughter\))',speech)
 		
-		applause[candidate] = len(r1)+len(r2)+len(r3)+len(r4)
-		laughter[candidate] = len(r5)+len(r6)+len(r7)+len(r8)
+		applause[candidate] = applause.get(candidate,0)+len(r1)+len(r2)+len(r3)+len(r4)
+		laughter[candidate] = laughter.get(candidate,0)+len(r5)+len(r6)+len(r7)+len(r8)
+	applause[candidate] = applause[candidate]/float(len(dates))
+	laughter[candidate] = laughter[candidate]/float(len(dates))
 
 laughter_keywords = {}
 applause_keywords = {}
@@ -51,9 +52,9 @@ laugh = codecs.open('laughter_count.json' , 'w', encoding='utf-8')
 laugh.write(json.dumps(laughter))
 laugh.close()
 
-# laugh_key = codecs.open('laughter_keywords.json', 'w', encoding='utf8')
-# laugh_key.write(json.dumps(laughter_keywords))
-# laugh_key.close()
+# # laugh_key = codecs.open('laughter_keywords.json', 'w', encoding='utf8')
+# # laugh_key.write(json.dumps(laughter_keywords))
+# # laugh_key.close()
 
 app = codecs.open('applause_count.json', 'w', encoding='utf8')
 app.write(json.dumps(applause))
