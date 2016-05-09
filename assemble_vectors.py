@@ -23,7 +23,6 @@ def assemble_vectors():
 		resultsdict[candidate].append(laughter)
 		resultsdict[candidate].append(anaphora)
 		resultsdict[candidate].append(epistrophe)
-	print resultsdict["Barack Obama presidential 2008"]
 	newf = codecs.open('assembled_vectors.json' , 'w', encoding='utf-8')
 	newf.write(json.dumps(resultsdict))
 	newf.close()
