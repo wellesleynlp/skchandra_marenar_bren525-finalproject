@@ -1,0 +1,13 @@
+# Site settings
+title: Rhetorical Exploration of Presidential Debates
+tagline: NLP 2016
+email: shivali.chandra@students.olin.edu
+description: 
+baseurl: "/skchandra_marenar_bren525-finalproject" # the subpath of your site, e.g. /blog/
+url: "https://wellesleynlp.github.io/skchandra_marenar_bren525-finalproject/" # the base hostname & protocol for your site
+github_username:  skchandra
+highlighter: rouge
+github: [Repository metadata]
+
+# Build settings
+markdown: kramdown
