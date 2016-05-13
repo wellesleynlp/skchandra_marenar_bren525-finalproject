@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Cleaning and Compiling Debate Transcripts into Useful Formats</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/clean-blog.min.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="index.html">Home</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Page Header -->
+    <!-- Set your background image for this header on the line below. -->
+    <header class="intro-header" style="background-image: url('img/mount1.jpg')">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                	<div class="post-heading">
+                        <h1 style="color:#841F27">Cleaning and Compiling Debate Transcripts into Useful Formats</h1>
+                        <hr class="small">
+                        <span class="subheading" style="color:#841F27"><b>Posted by Marena Richardson <br>May 13, 2016</b></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Post Content -->
+    <article>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                	<figure>
+                        <img src='img/diagram.png' width='100%'>
+                        <figcaption><small>Above: The intermediate steps to get from transcript to fully formatted JSON data</small></figcaption>
+                    </figure>
+                    <p>
+                        The first task we completed for this project was cleaning the debate data and getting it in a JSON format that we could use to run analysis. The debate data we used for this project can be found online <a href="http://www.presidency.ucsb.edu/debates.php">here</a>. We copied and pasted the debate transcripts by hand into text files that we organized by year and type of debate-- “presidential” for general election debates, “republican” for republican primary debates, and “democratic” for democratic primary debates.  
+                    </p>
+                    <p>
+                    	Once we had all of the debate transcripts in text files, we wrote regular expressions that matched speaker names to split the text up into speeches and extract all the speakers from it. Because the format of the speaker names varied so widely, and the same person was almost always referred by multiple different names and titles, this was a very time consuming process. Some examples of expressions we wrote and the names they matched are <code>[\n][A-Z]*[:;]</code> which matched all caps last names like “CLINTON:” and “KENNEDY:” and <code>\nM[RSrs]{1,2}\. [A-Z][\w\']*[\.:;]</code> which matched formal combinations like “Mrs. Clinton:” and “Mr. Kennedy.” We also wrote expressions like <code>\nSenator [A-Z][a-z]*\.</code> to match titles. We used these regular expressions to organize the data into a json file per year and debate type in the data folder of the form <code>{ Name1 : { Date1: [text1, text2], Date2: [text1] }, Name2 : {}</code>. We were not concerned in this first step about separating out candidates from other speakers. We extracted all speakers including moderators and other guests to make sure all the debate text was accounted for and assigned to the right person. We then went through each transcript individually and assembled a file called aliases.json that states each candidate’s full name and all the aliases they were referred to by during the debates. The script that created the aliases.json file is aliases.py.
+                    </p>
+                    <p>
+                    	Using aliases.json, we cleaned the JSON data files. In clean.py, we went through each file in the data folder and removed all speakers who were not candidates. We also merged each candidate’s text dictionaries under their official name, removing all aliases. We took care to do this by year as well because some aliases like “The President” refer to different people depending on which year the debate transcript is from. Once a clean version of the dictionary had been created, the file in the data folder (sorted by year and debate type) that held the old dictionary was replaced by a file containing the clean one.
+                    </p>
+                    <p>
+                    	Once individual years were cleaned of extraneous speakers, we decided to collate all the candidates into one file, referring to them as “Candidate Type Year” such as “Barack Obama presidential 2008” to avoid confusion with candidates that were re-elected. We created a few different formats for this data for exploratory purposes. “Full_parsed.json” is a file that contains candidate speeches with all the sentences within a given speaking date linked together and parsed into words, and all punctuation is deleted.  “Full_text.json” contains candidate speeches with all the answers for a given speaking date merged together. “Full_parsed_sentences.json” is similar to “full_parsed.json” in that it contains all candidate speeches parsed into words, but in “full_parsed_sentences.json” sentences are preserved.
+                    </p> 
+                </div>
+            </div>
+        </div>
+    </article>
+
+    <hr>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <ul class="list-inline text-center">
+                        <li>
+                            <a href="https://github.com/wellesleynlp/skchandra_marenar_bren525-finalproject">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                    <p class="copyright text-muted">This website is maintained by <a href="https://github.com/skchandra">skchandra</a>, <a href="https://github.com/marenar">marenar</a>, and <a href="https://github.com/bren525">bren525</a>.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="js/clean-blog.min.js"></script>
+
+</body>
+
+</html>
