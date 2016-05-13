@@ -4,8 +4,12 @@ import numpy
 from collections import defaultdict
 import json
 from nltk.corpus import stopwords
+import codecs
+import json
 
 stops = stopwords.words('english')
+stops.append('bell')
+stops.append('rings')
 
 """This code was written by Sravana Reddy and adapted by our team in order to parse our data structure properly."""
 
@@ -58,16 +62,38 @@ def feature_label_pmi(filename, labelname, feat_thresh):
             if features[feature]>=feat_thresh:  # ignore infrequent features
                 pmi[label][feature] = numpy.log2(len(labels_features[(feature, label)])*numusers/(features[feature]*labels[label]))
 
+    rep = []
+    dem = []
     for label in labels:
         if label == 'independent':
             continue
         print 'POSITIVE for', label
         for feature, score in sorted(filter(lambda x:x[1]>0, pmi[label].items()), key=lambda x:x[1], reverse=True):
+            if label == 'republican':
+                rep.append((feature,score))
+            elif label == 'democratic':
+                dem.append((feature,score))
+            else:
+                pass
             print feature,
         print
 
+    #print rep,'\n','\n',dem
+
+    rep_file = codecs.open('rep_freq.json','w',encoding='utf-8')
+    rep_file.write(json.dumps(rep))
+    rep_file.close()
+    
+    dem_file = codecs.open('dem_freq.json','w',encoding='utf-8')
+    dem_file.write(json.dumps(dem))
+    dem_file.close()
+
+#     augh = codecs.open('laughter_count.json' , 'w', encoding='utf-8')
+# laugh.write(json.dumps(laughter))
+# laugh.close()
+
 if __name__=='__main__':
-    filename = sys.argv[1]
-    labelfile = sys.argv[2]
-    threshold = int(sys.argv[3])
+    filename = sys.argv[1]  #full_parsed.json
+    labelfile = sys.argv[2] #labels.json
+    threshold = int(sys.argv[3])    #15
     feature_label_pmi(filename,labelfile,threshold)
