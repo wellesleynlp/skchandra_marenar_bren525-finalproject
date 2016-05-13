@@ -46,12 +46,13 @@ def plot_graph(name,val):
 
 	x = [v[1] for v in val]
 	names = [v[0] for v in val]
+	colors = [v[2] for v in val]
 
 	plt.figure(figsize=(15,12))
 
-	p1 = plt.barh(y,x)
+	p1 = plt.barh(y,x,color=colors)
 	p2 = plt.yticks(y+width,names,fontsize=12)
-	plt.title('Top Candidates for Highest Average Counts of '+name.title(),fontsize=16)
+	plt.title('Top Candidates for Highest Average Counts of '+name.title(),fontsize=20)
 	plt.xlabel('Average Count Per Debate',fontsize=16)
 	plt.savefig(name+'_freq.png')
 	plt.close()
@@ -60,18 +61,25 @@ def get_top(name):
 	newf = codecs.open(name+'_count.json','r',encoding='utf-8')
 	f = json.load(newf)
 
+	lab = codecs.open('labels.json','r',encoding='utf-8')
+	labels = json.load(lab)
+
 	short_names = defaultdict(int)
+	short_to_long = {}
+	col_map = {'republican':'#841F27','democratic':'#354E71','independent':'#A5B557'}
+	
 	for key,val in f.iteritems():
 		person = key.split(' ')
 		year = person[-1]
 		n = ' '.join(person[:-2])+' \''+year[-2:]
 		short_names[n] += val
+		short_to_long[n] = key
 
 	top = sorted(filter(lambda x: short_names[x] > 0, short_names.keys()), key=short_names.get, reverse=True)
 
 	plot_vals = []
 	for person in top:
-		plot_vals.append([person,short_names[person]])
+		plot_vals.append([person,short_names[person],col_map[labels[short_to_long[person]]]])
 	
 	plot_graph(name,plot_vals)
 
