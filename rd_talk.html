@@ -99,18 +99,31 @@
                             </td>
                         </tr>
                     </table>---->
-
+                    <p>
+                        Because our results in clustering were not as decisive as we would have liked, we moved towards other methods of looking at separations between Republicans and Democrats. An interesting field that we learned about in class was sociolinguistics, which involves studying how demographics influence language, situtational language, and dialect spread and change over time. Within this area work has been done by our professor, <a href="http://cs.wellesley.edu/~sravana/">Sravana Reddy</a>, to compute differences between language used primarily on the East Coast and language used primarily on the West Coast. We reasoned that the same technique could be used to see differences between language used by Democrats and Republicans, and adapted her code to use our corpus and show this divide. This code can be found <a href="https://github.com/wellesleynlp/skchandra_marenar_bren525-finalproject/blob/master/wordusage.py">here</a>. 
+                    </p>
+                    <p>
+                        In order to find this division, we use a method called Pointwise Mutual Information (PMI) to relate features to labels. Very simply, PMI is a process that computes the relationship between a word and another word (in this case, a label of Republican or Democrat) by calculating the probabibility that they will occur together. We used this process to find terms that appear most frequently with Democrats and most frequently with Republicans, ignoring words that are mentioned by fewer than fifteen candidates. 
+                    </p>
+                    <p>
+                        In order to more clearly see the most probable words, we created word clouds (the code for which is located <a href="https://github.com/wellesleynlp/skchandra_marenar_bren525-finalproject/blob/master/wordcloud_gen.py">here</a>). These are shown below in Figures 1 and 2:
+                    </p>
                     <center><figure>
                         <img src='img/rep_cloud.png' width='80%' alt='Rep' >
                         <figcaption><small>Figure 1: Republican word cloud</small></figcaption>
                     </figure></center>
+                    <p>
+                        Within the Republican word cloud, a few words immediately stand out: 'pro-life', 'conservative', and '10th', among others. Looking through the debates, these refer to the stances they would like to maintain, as well as the 10th Amendment which Republicans frequently cite for state power in health care. Other words that stand out are 'unconstitutional' and 'Obamacare', which once again occur most frequently with relation to the argument around requiring people to buy health insurance and state vs. federal power. 'Dodd-Frank' also shows up, which is a bill relating to financial regulatory reform that Republicans would like to repeal. Interestingly, Republicans also routinely use the term 'Creator', referring to jobs but mostly in the context of religion. A few words that this party is more likely to use while speaking are 'heck', 'fashion', 'crazy', and 'loves'. Overall, many of the phrases relate to the military, troops, and parenthood.
+                    </p>
                     <center><figure>
                         <img src='img/dem_cloud.png' width='80%'>
                         <figcaption><small>Figure 2: Democratic word cloud</small></figcaption>
                     </figure></center>
-
                     <p>
-                        
+                        For Democrats, words that stand out are 'Edwards', 'Latin', 'resolution', and 'wealthiest'. Edwards refers to John Edwards, who is both a speaker in a few debates but also a senator and VP nominee whose role in foreign relations and health care is consequently mentioned by many other candidates. 'Latin' is used, along with other terms that appear such as 'diversity', 'color', 'African', and 'racism', in speeches about addressing racism and issues that minorities (such as Latin Americans) face. Intriguingly, 'resolution' as a term is largely only used when candidates discuss decisions made relating to the Middle East, UN, Iraq, or Iran, and not otherwise. Other terms, such as the aforementioned 'wealthiest', 'HMOs', 'urban', 'rural', and 'universal', relate to the discussion around health care and combating wealthy corporations and banks. Other key terms mentioned are 'Mountains' (alluding to the Yucca Mountain controversy) and 'AIDs', to increase medical care funding. Some terms which this group is more likely to use while speaking are 'crack' and 'profound'. Overall, Democrats are likely to discuss race relations, health care, and wealth.
+                    </p>
+                    <p>
+                        The last point of interest was to see which candidates were most semantically aligned with their party. In order to find these candidates, we simply counted the number of unique frequent party terms that each candidate used, and found the candidates with the highest values. Within the Republican Party, the five "most" Republican candidates are Mitt Romney, John McCain, Rick Santorum, George W. Bush, and Newt Gingrich. The five "least" Republican candidates are Tommy Thompson, James Gilmore, Fred Thompson, John Anderson, and Tim Pawlenty. Within the Democratic Party, the five "most" Democratic candidates are Hillary Clinton, Barack Obama, Al Gore, John Edwards, and Bernie Sanders. The five "least" Democratic candidates are Wesley Clark, Al Sharpton, Howard Dean, Joe Lieberman, and Mike Gravel. Rather unsurprisingly, the candidates whose vocabularies are most similar to the party they represent tend to do well, while the candidates who deviate most are less well-known and do not perform as well with voters. 
                     </p>
                 </div>
             </div>

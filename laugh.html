@@ -87,7 +87,7 @@
                         To wrap up our rhetorical analysis, the last aspect of the debates we looked at was the audience. Throughout the transcripts from 1980 onwards, we were given some insight into how the audience reacted to each candidate through the applause and laughter that was transcribed. We were interested in looking at this further to see not just how many times each candidate could incite laughter or applause, but to see if we could somehow learn more about topics or phrases that typically generated these reactions. 
                     </p>
                     <p>
-                        In order to get these topics and phrases, we went through a series of steps. First, we use regex in order to locate the instance of laughter or applause. Then, we took the three sentences or statements prior to the reaction and saved them to the candidate in a dictionary. The regex searched for one to three sentences, so if there were fewer spoken by the candidate before the reaction a smaller amount would be recorded. The number three was mostly arbitrarily chosen; however, from reading through the debates, it seemed like three sentences was fairly good for only pulling the topics related to the reaction without getting sentences that were unrelated. 
+                        In order to get these topics and phrases, we went through a series of steps. First, we use regex in order to locate the instance of laughter or applause. Then, we took the three sentences or statements prior to the reaction and saved them to the candidate in a dictionary. The regex searched for one to three sentences, so if there were fewer spoken by the candidate before the reaction a smaller amount would be recorded. The number three was mostly arbitrarily chosen; however, from reading through the debates, it seemed like three sentences was fairly good for only pulling the topics related to the reaction without getting sentences that were unrelated. The code for this task can be found <a href="https://github.com/wellesleynlp/skchandra_marenar_bren525-finalproject/blob/master/applause.py">here</a>.
                     </p>
                     <p>
                         Additionally, we kept counts of the number of times each candidate generated a reaction and normalized the count by the number of debates they spoke in. Figures 1 and 2 display graphs of the average number of times certain candidates generated that particular reaction per debate. The candidates shown are the ones for whom the average count was not zero: 
@@ -113,21 +113,21 @@
                         These observations combined together could indicate something about the nature of audience laughter versus applause. Judging by the correlation between repeat candidates and high scores, and the relatively even distribution between Republicans and Democrats, laughter could simply be an indication of how at ease a candidate is or how witty they are. On the other hand, the lack of correlation between repeat candidates and high scores, and the uneven distribution between Republicans and Democrats and even the years with higher scores could mean that applause is a better indication of how strongly topics being discussed resonante with the audience, or which candidates talk about issues important to the audience the most. 
                     </p>
                     <p>
-                        In order to see what candidates talked about to generate applause and laughter most commonly, we used the sentences relating to each instance (mentioned earlier in this post) in order to produce word clouds with frequently mentioned terms, after filtering out stopwords. Stopwords are words that are frequently mentioned but do not have any particular significance or defining feature, such as 'the' or 'and'. The word clouds are shown below in Figures 3 and 4: 
+                        In order to see what candidates talked about to generate applause and laughter most commonly, we used the sentences relating to each instance (mentioned earlier in this post) in order to produce word clouds with frequently mentioned terms, after filtering out stopwords. Stopwords are words that are frequently mentioned but do not have any particular significance or defining feature, such as 'the' or 'and'. The code we wrote for this task can be found <a href="https://github.com/wellesleynlp/skchandra_marenar_bren525-finalproject/blob/master/laugh_applause_wordcloud.py">here</a>. The word clouds are shown below in Figures 3 and 4: 
                     </p>
-                    <figure>
+                    <center><figure>
                         <img src='img/laughter.png' width='100%' alt='Rep'>
                         <figcaption><small>Figure 3: Laughter word cloud</small></figcaption>
-                    </figure>
+                    </figure></center>
                     <p>
                         As we suspected, the words here are largely words that hold no special significance to the election or presidential debate, such as 'question', 'right', 'yes', 'sure', or 'tonight'. In fact, many of these words suggest that the candidate was merely making simple jokes relating to questions or answers given.
                     </p>
-                    <figure>
+                    <center><figure>
                         <img src='img/applause.png' width='100%' alt='Rep'>
                         <figcaption><small>Figure 4: Applause word cloud</small></figcaption>
-                    </figure>
+                    </figure></center>
                     <p>
-                        The word cloud for applause, however, is much more meaningful. Here we can see words such as 'country', 'tax', 'america', 'children', and 'education'. The combination of these words with the inclusion of positive words such as 'believe', 'make', 'work', and 'better' indicate that candidates who deliver action-oriented speeches and answers resonate with the audience. The really fascinating conclusion that can be drawn here is that laughter can potentially help to indicate which candidates will perform better, while applause, though it stems directly from what a candidate says, may not indicate candidate success so much as what the audience cares about. 
+                        The word cloud for applause, however, is much more meaningful. Here we can see words such as 'country', 'tax', 'america', 'children', and 'education'. The combination of these words with the inclusion of positive words such as 'believe', 'make', 'work', and 'better' indicate that candidates who deliver action-oriented speeches and answers resonate with the audience. The really fascinating conclusion that can be drawn here is that laughter can potentially help to indicate which candidates will perform better in polls, while applause, though it stems directly from what a candidate says, may not indicate candidate success so much as what the audience cares most strongly about. 
                     </p>
                 </div>
             </div>
