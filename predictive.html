@@ -61,7 +61,7 @@
 
     <!-- Page Header -->
     <!-- Set your background image for this header on the line below. -->
-    <header class="intro-header" style="background-image: url('img/mount1.jpg')">
+    <header class="intro-header" style="background-image: url('img/win1.jpg')">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
@@ -85,7 +85,36 @@
                         <figcaption><small>Above: The intermediate steps to get from transcript to fully formatted JSON data</small></figcaption>
                     </figure>---->
                     <p>
-                        Initially, our goal was to determine whether it was possible to predict candidate success in primary and general elections. Our hypothesis was that, by creating vectors representing candidate speeches, we would be able to see which candidates were closest to candidates who performed well, potentially indicating if they themselves would perform equally well. For the general election, this would mean that they would have a higher chance of winning the presidency. For primary elections, this would mean that they would have a greater chance of their rating 
+                        Initially, our goal was to determine whether it was possible to predict candidate success in primary and general elections. Our hypothesis was that, by creating vectors representing candidate speeches, we would be able to see which candidates were closest to candidates who performed well, potentially indicating if they themselves would perform equally well. For the general election, this would mean that they would have a higher chance of winning the presidency. For primary elections, this would mean that they would have a greater chance of their rating in the polls going up after a speech or debate.
+                    </p>
+                    <p>
+                        Once we <a href="https://wellesleynlp.github.io/skchandra_marenar_bren525-finalproject/clean_compile.html">compiled our corpus</a>, we created context vectors for each candidate by running TF-IDF to vectorize a compilation of every debate for each candidate. TF-IDF stands for Term Frequency-Inverse Document Frequency, and is a method used to compute how important each term is to the overall corpus. For example, a word such as 'the' is a frequently mentioned word, but because it is mentioned in every single text in our corpus, it isn't as important a term as one that would set apart a candidate, such as the term 'HMOs' or 'pro-life'. 
+                    </p>
+                    <p>
+                        Even after thresholding our terms, we were left with 87 vectors that had over 1000 features. This was too sparse to draw significant conclusions from so we also used dimensionality reduction in order to make our vectors more representative. As the name indicates, this process reduces the number of random variables in order to compile the vectors into more workable sizes. Next, we labelled the candidates who won presidential elections with a 1, and the other candidates with 0s (indicating losing). With these labels and the context vectors, we could run both a bag of words model and a kNN model. In order to run predictive models, we also split our candidates into testing and training data - a mixture of past and more recent candidates made up the training data, while this year and a few past years went into the testing data. 
+                    </p>
+                    <center><figure>
+                        <img src='img/tree.gif' width='80%'>
+                        <figcaption><small>Figure 1: An example of a feature tree, where each node is a feature and the resulting features are shown based on the decision made at each node to make the final decision of T or F (Tuesday or Friday).</small></figcaption>
+                    </figure></center>
+                    <p>
+                        For the bag of words model, we used a random forest classifier to use the training vectors' features and labels to train a ‘forest’ of feature trees. We then ran our forest on the test data in order to get the predicted winning and losing labels for each candidate as outputs. Because we did not choose for the classifier to run the same way each time, our results varied from around 76%-81% accuracy. Then, we ran our vectorized training set, trained labels, and test set through our k-nearest neighbors model. Essentially, k-nearest neighbors assigns a label to each test candidate based on the majority of labels of the train candidates it is computationally closest to - which vectors the test candidate vector is near. Running this also gave us an accuracy of 81% - the code we used is available in two ipython notebooks: random_forest_model.ipynb and k_nearest_neighbors_model.ipynb.
+                    </p>
+                    <center><figure>
+                        <img src='img/knn.png' width='60%' align="middle">
+                        <figcaption><small>Figure 2: A visualization of k-nearest neighbors. The vectors closest to a majority of those with blue labels will be labelled as blue, the vectors closest to a majority of those with yellow labels will be labelled as yellow, and the vectors closest to a majority of those with red labels will be labelled as red.</small></figcaption>
+                    </figure></center>
+                    <p>
+                         When we ran these models on our test candidates, they both gave us an accuracy of about 81%. While this sounds fairly impressive, nearly all of our train labels were 0, so this just meant that the majority of predicted labels were also 0. In fact, the kNN model assigned a value of 0 to every label, which makes sense conceptually because the majority of vectors any test vector is close to will have labels of 0, due to the low number of winners. The random forest model tended to typically assign two or three labels as 1, in accordance to the actual labels. However, they were for the most part arbitrarily assigned by the model, due to the tiny dataset making it difficult to create a meaningful model.
+                    </p>
+                    <p>
+                        Both our KNN and random forest classifiers have the same problem. First, because only one candidate can win each election approximately 80% of our data is losing candidates, making our labels extremely biased towards losses. This combined with the fact that we do not have sufficient data for either model results in the best prediction for any given candidate to be a loss. We determined that this could be addressed in one obvious way: increase the size of the data set. 
+                    </p>
+                    <p>
+                        When we ran these tests, each document (vector) is a candidate in a particular year (meaning Obama in 2008 and Obama in 2012 are separately vectorized and labelled). As we mentioned earlier, this gives us 87 vectors. We could increase this number by looking at how each candidate performs in each debate, not just each year. For example, Obama in a debate on December 7th, 2007 and Obama in a debate on February 12th, 2008 could be labelled differently if one debate caused his standing in the polls to rise and one did not. Each candidate is in an average of at least four to six debates, so creating vectors of each candidate in each debate would expand our data set significantly. 
+                    </p>
+                    <p>
+                        However, for precise labelling to this degree, it would be necessary to gain access to poll data going back to our first debate in the 1960s. Unfortunately, we were unable to gain access to this data in such a short time span. Thus, we changed direction slightly and decided to look more into rhetorical techniques and analysis gained from these debates in order to see what more we could learn. 
                     </p>
                 </div>
             </div>
