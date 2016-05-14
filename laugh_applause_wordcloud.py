@@ -42,19 +42,20 @@ def get_freq(name):
 
 def plot_graph(name,val):
 	y = np.arange(len(val))
-	width = 0.25
+	width = 0.1
 
 	x = [v[1] for v in val]
 	names = [v[0] for v in val]
 	colors = [v[2] for v in val]
 
-	plt.figure(figsize=(15,12))
+	plt.figure(figsize=(10,20))
 
 	p1 = plt.barh(y,x,color=colors)
-	p2 = plt.yticks(y+width,names,fontsize=12)
+	p2 = plt.yticks(y+width,names,fontsize=14)
 	plt.title('Top Candidates for Highest Average Counts of '+name.title(),fontsize=20)
 	plt.xlabel('Average Count Per Debate',fontsize=16)
-	plt.savefig(name+'_freq.png')
+	plt.savefig(name+'_freq1.png')
+	plt.show()
 	plt.close()
 	
 def get_top(name):
