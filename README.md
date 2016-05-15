@@ -8,9 +8,15 @@ To that end, we created a set of clean debate transcript data from the raw text 
 
 ##Contents
 `/clean_data_formats` - cleaned and compiled data sets in multiple formats described on the site
+
 `/cleaning` - code to perform the raw data cleaning
+
 `/clustering` - work related to vector space clustering of candidates
+
 `/data` - cleaned data sets for individual election years and types
+
 `/data_visualizations` - graphs and figures
+
 `/predictive_modeling` - work related to knn and random forest prediction techniques on tfidf vectors
+
 `/rhetorical_analysis` - candidate speech rhetoric breakdowns 
