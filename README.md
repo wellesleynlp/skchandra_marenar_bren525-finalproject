@@ -7,6 +7,8 @@ With election season close at hand we’re all wondering which candidate will co
 To that end, we created a set of clean debate transcript data from the raw text we found [here](http://www.presidency.ucsb.edu/debates.php). The modeling and analysis techniques we used to analyze the data are all described in great detail on our project site: [http://wellesleynlp.github.io/skchandra_marenar_bren525-finalproject/index.html](http://wellesleynlp.github.io/skchandra_marenar_bren525-finalproject/index.html)
 
 ##Contents
+`/1960 - /2016` - raw transcripts
+
 `/clean_data_formats` - cleaned and compiled data sets in multiple formats described on the site
 
 `/cleaning` - code to perform the raw data cleaning
