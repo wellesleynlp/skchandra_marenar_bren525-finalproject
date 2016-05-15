@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Rhetorical Exploration of Presidential Debates</title>
+    <title>Rhetorical Analysis Part 2: Parallelism</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -21,6 +21,13 @@
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
 
 </head>
 
@@ -39,6 +46,7 @@
                 </button>
             </div>
 
+            <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
@@ -49,97 +57,58 @@
                     </li>
                 </ul>
             </div>
+            <!-- /.navbar-collapse -->
         </div>
+        <!-- /.container -->
     </nav>
 
     <!-- Page Header -->
     <!-- Set your background image for this header on the line below. -->
-    <header class="intro-header" style="background-image: url('img/welcome.jpg')">
+    <header class="intro-header" style="background-image: url('img/mount1.jpg')">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                    <div class="site-heading">
-                        <h1 style="color:#841F27">Rhetorical Exploration of Presidential Debates</h1>
-                        <hr class="small">
-                        <span class="subheading" style="color:#841F27"><b>Natural Language Processing Spring 2016, Olin College</b></span>
-                        <span class="subheading" style="color:#841F27"><b>Brendan Caporaletti, Shivali Chandra, and Marena Richardson</b></span>
+                    <div class="post-heading">
+                        <h1 style="color:#841F27">Rhetorical Analysis Part 2: Parallelism</h1>
+                        
+                        <span class="subheading" style="color:#841F27"><b>Posted by Brendan Caporaletti <br>May 13, 2016</b></span>
                     </div>
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- Main Content -->
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <hr>
-                <div class="post-preview">
-                    <a href="laugh.html">
-                        <h2 class="post-title">
-                           7. The Audience: What Makes Them React? 
-                        </h2>
-                    </a>
-                    <p class="post-meta">Posted by Shivali Chandra on <b>May 13, 2016</b></p>
+    <!-- Post Content -->
+    <article>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <p>
+            <i>“I think that the American people are never going to elect a president who insults Mexicans, who insults Muslims, who insults women, who insults African-Americans.”</i> -Bernie Sanders, 2016
+        </p>
+        <p>
+            We see parallel structure used all over candidates debates and speeches. It’s a powerful tool to reiterate and build a point using the repetition of singular pattern. We wanted to figure out a way to identify these classic uses of parallel structure like you see in the quote above.  So to define parallel structure, it’s simply the adjacent repetition of an identical grammatical structure. So the first thing we must do is identify the grammatical structure In order to accomplish this we used nltk’s part of speech tagger, which uses the Penn Treebank Part of Speech Tags, listed <a href="https://www.ling.upenn.edu/courses/Fall_2003/ling001/penn_treebank_pos.html">here</a>.
+        </p>
+        <p>
+            Once tagged we can start to identify these grammatical patterns. In order to save time later we pre-process a list of the locations of every existent grammatical pattern. The length of phrase is adjustable, but patterns under 3 words yield too many false-positive and patterns over 7 words rarely actually exist. So we build a dictionary for every document where keys are every single present 3 to 7 word grammatical pattern and the value being a list of every index within the document where that pattern appears. We serialized and stored this dictionary such that it never had to be recomputed.
+        </p>
+        <p>
+            With this dictionary of pattern references we can start looking for repetition in these patterns. We took a straightforward approach by simply looking for two, three, or four instances of the same pattern that are directly adjacent to one another. This yields lot’s of great examples:
+        </p>
+        <p>
+            <i>“we want peace we want freedom we want security”</i> - Mitt Romney, 2012
+        </p>
+        <p>
+            <i>“the power companies the oil companies the drug companies”</i> - John Kerry, 2004
+        </p>
+        </p>
+            <i>“they solved their problems they confronted their challenges they embraced their opportunities
+            “</i> - Jimmy Carter, 1980
+        </p>
                 </div>
-                <hr>
-                <div class="post-preview">
-                    <a href="rd_talk.html">
-                        <h2 class="post-title">
-                           6. Republicans Vs. Democrats: What Do They Talk About? 
-                        </h2>
-                    </a>
-                    <p class="post-meta">Posted by Shivali Chandra on <b>May 13, 2016</b></p>
-                </div>
-                <hr>
-                <div class="post-preview">
-                    <a href="cluster.html">
-                        <h2 class="post-title">
-                           5. Republicans Vs. Democrats: Clustering
-                        </h2>
-                    </a>
-                    <p class="post-meta">Posted by Brendan Caporaletti on <b>May 13, 2016</b></p>
-                </div>
-                <hr>
-                <div class="post-preview">
-                    <a href="ra_pt2.html">
-                        <h2 class="post-title">
-                           4. Rhetorical Analysis Part 2: Parallelism
-                        </h2>
-                    </a>
-                    <p class="post-meta">Posted by Brendan Caporaletti on <b>May 13, 2016</b></p>
-                </div>
-                <hr>
-                <div class="post-preview">
-                    <a href="ra_pt1.html">
-                        <h2 class="post-title">
-                           3. Rhetorical Analysis Part 1: Anaphora and Epistrophe
-                        </h2>
-                    </a>
-                    <p class="post-meta">Posted by Marena Richardson on <b>May 13, 2016</b></p>
-                </div>
-                <hr>
-            	<div class="post-preview">
-                    <a href="predictive.html">
-                        <h2 class="post-title">
-                           2. Predictive Modeling
-                        </h2>
-                    </a>
-                    <p class="post-meta">Posted by Shivali Chandra on <b>May 13, 2016</b></p>
-                </div>
-                <hr>
-                <div class="post-preview">
-                    <a href="clean_compile.html">
-                        <h2 class="post-title">
-                           1. Cleaning and Compiling Debate Transcripts
-                        </h2>
-                    </a>
-                    <p class="post-meta">Posted by Marena Richardson on <b>May 13, 2016</b></p>
-                </div>
-                <hr>
             </div>
         </div>
-    </div>
+    </article>
 
     <hr>
 
@@ -174,4 +143,6 @@
     <script src="js/clean-blog.min.js"></script>
 
 </body>
+
 </html>
+

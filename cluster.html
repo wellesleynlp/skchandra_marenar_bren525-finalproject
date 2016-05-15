@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,7 +10,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Rhetorical Exploration of Presidential Debates</title>
+    <title>Rhetorical Analysis Part 1: Anaphora and Epistrophe</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -21,6 +22,13 @@
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
 
 </head>
 
@@ -39,6 +47,7 @@
                 </button>
             </div>
 
+            <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
@@ -49,97 +58,57 @@
                     </li>
                 </ul>
             </div>
+            <!-- /.navbar-collapse -->
         </div>
+        <!-- /.container -->
     </nav>
 
     <!-- Page Header -->
     <!-- Set your background image for this header on the line below. -->
-    <header class="intro-header" style="background-image: url('img/welcome.jpg')">
+    <header class="intro-header" style="background-image: url('img/presidents2.jpg')">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                    <div class="site-heading">
-                        <h1 style="color:#841F27">Rhetorical Exploration of Presidential Debates</h1>
-                        <hr class="small">
-                        <span class="subheading" style="color:#841F27"><b>Natural Language Processing Spring 2016, Olin College</b></span>
-                        <span class="subheading" style="color:#841F27"><b>Brendan Caporaletti, Shivali Chandra, and Marena Richardson</b></span>
+                    <div class="post-heading">
+                        <h1 style="color:#841F27">Republicans Vs. Democrats: Clustering</h1>
+                        
+                        <span class="subheading" style="color:#841F27"><b>Posted by Brendan Caporaletti <br>May 13, 2016</b></span>
                     </div>
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- Main Content -->
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <hr>
-                <div class="post-preview">
-                    <a href="laugh.html">
-                        <h2 class="post-title">
-                           7. The Audience: What Makes Them React? 
-                        </h2>
-                    </a>
-                    <p class="post-meta">Posted by Shivali Chandra on <b>May 13, 2016</b></p>
+    <!-- Post Content -->
+    <article>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <p>
+            We made an earlier <a href="predictive.html">blog post</a> about using various prediction method like knn and random forest to predict whether a candidate would win or lose. However due to insufficient data, and a disproportionate number of losers rather than winners we were not able to train an effective prediction model.
+            </p>
+            <p>
+            Instead we wanted to use the candidate vectors we had built for our prediction models and use them in a different interesting way. We decided to look at what happens when we cluster candidates based on various dimensions.
+            </p>
+            <p>
+            First, we looked at simple reduced tf-idf vectors. We had success using term based PMI to distinguish democrats and republicans as discussed in our other party seperation post, so we imagined that binary clustering of tf-idf might reveal a party line.
+            </p>
+            <p>
+            Unfortunately, our results were as follows: cluster 1 had 43 republicans and 26 democrats, while cluster 2 had 10 republicans and 6 democrats. The clusters showed no clear separation, each reflecting the 2:1 ratio of republican to democratic candidates present in our data set.
+            </p>
+            <p>
+            We proceeded to look across other dimensions as well as adjust the number of clusters. We found no sensible cluster separation when looking specifically at what party a candidate was in, whether they were running in a primary or presidential race, or what year they were running in.
+            </p>
+            <p>
+            We repeated this process using our rhetorical analysis vectors drawn from our analysis of anaphora, epistrophe, and parallelism. Again, we could recognize no sensible patterns in the resultant clustering. As discussed in our rhetorical analysis posts, although we were able to identify interesting use of rhetorical techniques, these techniques did not seem be used especially by an kind of candidate.
+            </p>
+            <p>
+            In all, clustering faced the same fate as our original predictive models. We did not seem to have the critical mass of data such that the differentiation of clusters became clear.
+        </p>
                 </div>
-                <hr>
-                <div class="post-preview">
-                    <a href="rd_talk.html">
-                        <h2 class="post-title">
-                           6. Republicans Vs. Democrats: What Do They Talk About? 
-                        </h2>
-                    </a>
-                    <p class="post-meta">Posted by Shivali Chandra on <b>May 13, 2016</b></p>
-                </div>
-                <hr>
-                <div class="post-preview">
-                    <a href="cluster.html">
-                        <h2 class="post-title">
-                           5. Republicans Vs. Democrats: Clustering
-                        </h2>
-                    </a>
-                    <p class="post-meta">Posted by Brendan Caporaletti on <b>May 13, 2016</b></p>
-                </div>
-                <hr>
-                <div class="post-preview">
-                    <a href="ra_pt2.html">
-                        <h2 class="post-title">
-                           4. Rhetorical Analysis Part 2: Parallelism
-                        </h2>
-                    </a>
-                    <p class="post-meta">Posted by Brendan Caporaletti on <b>May 13, 2016</b></p>
-                </div>
-                <hr>
-                <div class="post-preview">
-                    <a href="ra_pt1.html">
-                        <h2 class="post-title">
-                           3. Rhetorical Analysis Part 1: Anaphora and Epistrophe
-                        </h2>
-                    </a>
-                    <p class="post-meta">Posted by Marena Richardson on <b>May 13, 2016</b></p>
-                </div>
-                <hr>
-            	<div class="post-preview">
-                    <a href="predictive.html">
-                        <h2 class="post-title">
-                           2. Predictive Modeling
-                        </h2>
-                    </a>
-                    <p class="post-meta">Posted by Shivali Chandra on <b>May 13, 2016</b></p>
-                </div>
-                <hr>
-                <div class="post-preview">
-                    <a href="clean_compile.html">
-                        <h2 class="post-title">
-                           1. Cleaning and Compiling Debate Transcripts
-                        </h2>
-                    </a>
-                    <p class="post-meta">Posted by Marena Richardson on <b>May 13, 2016</b></p>
-                </div>
-                <hr>
             </div>
         </div>
-    </div>
+    </article>
 
     <hr>
 
@@ -174,4 +143,6 @@
     <script src="js/clean-blog.min.js"></script>
 
 </body>
+
 </html>
+
