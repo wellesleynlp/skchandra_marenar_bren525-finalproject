@@ -49,14 +49,18 @@ def feature_label_pmi(filename, labelname, feat_thresh):
                     features[feature].add(name)
                     labels_features[(feature,label)].add(name)
 
-
+    old_feat = {}
     #compute PMI
     pmi = defaultdict(lambda : defaultdict(float))
     numusers = len(candidates)
     for feature in features:
+        old_feat[feature] = features[feature]
         features[feature] = len(features[feature])
 
+    old_labels = {}
+
     for label in labels:
+        old_labels[label] = labels[label]
         labels[label] = len(labels[label])
         for feature in features:
             if features[feature]>=feat_thresh:  # ignore infrequent features
@@ -64,6 +68,9 @@ def feature_label_pmi(filename, labelname, feat_thresh):
 
     rep = []
     dem = []
+    rep_person_count = defaultdict(int)
+    dem_person_count = defaultdict(int)
+
     for label in labels:
         if label == 'independent':
             continue
@@ -71,12 +78,22 @@ def feature_label_pmi(filename, labelname, feat_thresh):
         for feature, score in sorted(filter(lambda x:x[1]>0, pmi[label].items()), key=lambda x:x[1], reverse=True):
             if label == 'republican':
                 rep.append((feature,score))
+                for name in old_feat[feature]:
+                    if name in old_labels[label]:
+                        rep_person_count[name] += 1
             elif label == 'democratic':
                 dem.append((feature,score))
+                for name in old_feat[feature]:
+                    if name in old_labels[label]:
+                        dem_person_count[name] += 1
             else:
                 pass
             print feature,
         print
+
+    print '\n','\n'
+    print sorted(rep_person_count, key=rep_person_count.get, reverse=True),'\n','\n'
+    print sorted(dem_person_count, key=dem_person_count.get, reverse=True)
 
     #print rep,'\n','\n',dem
 
@@ -87,10 +104,6 @@ def feature_label_pmi(filename, labelname, feat_thresh):
     dem_file = codecs.open('dem_freq.json','w',encoding='utf-8')
     dem_file.write(json.dumps(dem))
     dem_file.close()
-
-#     augh = codecs.open('laughter_count.json' , 'w', encoding='utf-8')
-# laugh.write(json.dumps(laughter))
-# laugh.close()
 
 if __name__=='__main__':
     filename = sys.argv[1]  #full_parsed.json
