@@ -94,7 +94,14 @@
                         Anaphora and epistrophe are both powerful rhetorical techniques. Anaphora is when someone starts multiple sentences with the same phrase as in Martin Luther King’s “I have a dream” speech. Epistrophe is similar, except it consists of repeated words at the end of the sentence, not the beginning. In order to determine how prevalent these techniques were amongst candidates and to score them on their use of the technique, I started with “full_parsed_sentences.json”. I looped through candidates’ individual speeches, comparing each sentence to each previous sentence. I compared the first four words of one sentence to the first four words of the previous sentence, and the same for the last four words. The count of each candidates’ use of the technique (anaphora or epistrophe) was upped relative to how many words (at the beginning or the end) they repeated in the two consecutive sentences. At the end of the analysis, each candidates’ count was normalized by the total number of sentences in their speeches.
                     </p>
                     <p>
-                        What we discovered was that most candidates use anaphora and epistrophe to some degree and those who don't use it at all often did not have many speaking opportunities because they dropped out of the race very early. Anaphora was used significantly more amongst candidates than epistrophe, indicating that it is more common in natural speech to start sentences with the same phrase than to end them with the same phrase.
+                        What we discovered was that most candidates use anaphora and epistrophe to some degree and the few who don't use it at all often did not have many speaking opportunities because they dropped out of the race very early. Anaphora was used significantly more amongst candidates than epistrophe, indicating that it is more common in natural speech to start sentences with the same phrase than to end them with the same phrase.Normalized counts for usage of anaphora ranged between 0.12 and 0.4, whereas those for epistrophe ranged from 0.01 to 0.19. 
+                    </p>
+                    <center><figure>
+                        <img src='img/labelled_ae_plot.png' width='60%' align="middle">
+                        <figcaption><small>Figure 1: A plot of the distribution of normalized counts of anaphora and epistrophe. Labels are hidden here so that the point distribution can be seen.</small></figcaption>
+                    </figure></center>
+                    <p>
+                        As you can see in the plot above, most candidates used some amount of both anaphora and epistrophe. Intriguingly, the point at the top right corner of the plot is Donald Trump. He had the highest usage of epistrophe. The highest user of anaphora on the right is Wesley Clark, who was a democratic candidate in 2004. Other candidates who scored highly in both were Dennis Kucinich and George W. Bush. 
                     </p>
                 </div>
             </div>
