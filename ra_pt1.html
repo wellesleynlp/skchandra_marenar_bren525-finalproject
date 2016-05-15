@@ -88,7 +88,13 @@
                         <figcaption><small>Above: The intermediate steps to get from transcript to fully formatted JSON data</small></figcaption>
                     </figure>---->
                     <p>
+                        Given our lack of success with predictive modeling, we decided to shift our project goal towards a more exploratory approach. We had read a <a href="http://arxiv.org/pdf/1301.3547.pdf">paper on rhetorical analysis</a> which seemed to be an interesting direction in which we could take our project. Rhetorical analysis is when speeches are broken down and analyzed to identify powerful speaking techniques such as various sentence structures. We selected three oratorical techniques identified in the paper to analyze in our own corpus: anaphora, epistrophe, and parallelism. In addition we decided to analyze what caused the audience to applaud and laugh in candidate speeches. Although we were influenced by the work done in the rhetorical analysis paper, we wrote our own algorithms to identify these sentence structures in our corpus. 
+                    </p>
+                    <p>
                         Anaphora and epistrophe are both powerful rhetorical techniques. Anaphora is when someone starts multiple sentences with the same phrase as in Martin Luther King’s “I have a dream” speech. Epistrophe is similar, except it consists of repeated words at the end of the sentence, not the beginning. In order to determine how prevalent these techniques were amongst candidates and to score them on their use of the technique, I started with “full_parsed_sentences.json”. I looped through candidates’ individual speeches, comparing each sentence to each previous sentence. I compared the first four words of one sentence to the first four words of the previous sentence, and the same for the last four words. The count of each candidates’ use of the technique (anaphora or epistrophe) was upped relative to how many words (at the beginning or the end) they repeated in the two consecutive sentences. At the end of the analysis, each candidates’ count was normalized by the total number of sentences in their speeches.
+                    </p>
+                    <p>
+                        What we discovered was that most candidates use anaphora and epistrophe to some degree and those who don't use it at all often did not have many speaking opportunities because they dropped out of the race very early. Anaphora was used significantly more amongst candidates than epistrophe, indicating that it is more common in natural speech to start sentences with the same phrase than to end them with the same phrase.
                     </p>
                 </div>
             </div>
