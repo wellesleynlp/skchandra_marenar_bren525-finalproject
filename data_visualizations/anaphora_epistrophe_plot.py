@@ -3,7 +3,7 @@ import codecs, json
 import numpy as np
 
 N = 10
-newf = codecs.open('anaphora_epistrophe.json', 'r', encoding='utf-8')
+newf = codecs.open('../rhetorical_analysis/anaphora_epistrophe.json', 'r', encoding='utf-8')
 f = json.load(newf)
 labels = []
 xdata = []

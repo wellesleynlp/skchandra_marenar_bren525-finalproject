@@ -106,7 +106,7 @@ def feature_label_pmi(filename, labelname, feat_thresh):
     dem_file.close()
 
 if __name__=='__main__':
-    filename = sys.argv[1]  #full_parsed.json
+    filename = sys.argv[1]  #../clean_data_formats/full_parsed.json
     labelfile = sys.argv[2] #labels.json
     threshold = int(sys.argv[3])    #15
     feature_label_pmi(filename,labelfile,threshold)

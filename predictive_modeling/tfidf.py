@@ -53,7 +53,7 @@ def tfidf_docterm(corpus, freqthresh):
     return [sorted_words, context, labels]
 
 if __name__ == "__main__":
-    f = codecs.open('full_parsed.json', 'r', encoding='utf-8')
+    f = codecs.open('../clean_data_formats/full_parsed.json', 'r', encoding='utf-8')
     data = json.load(f)
     f.close()
 

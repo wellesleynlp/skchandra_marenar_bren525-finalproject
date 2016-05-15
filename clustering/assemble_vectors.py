@@ -2,10 +2,10 @@ import codecs
 import json
 from collections import defaultdict
 
-aejson = codecs.open('anaphora_epistrophe.json' , 'r', encoding='utf-8')
-ajson = codecs.open('applause_count.json' , 'r', encoding='utf-8')
-ljson = codecs.open('laughter_count.json' , 'r', encoding='utf-8')
-tfjson = codecs.open('tfidf_vectors.json' , 'r', encoding='utf-8')
+aejson = codecs.open('../rhetorical_analysis/anaphora_epistrophe.json' , 'r', encoding='utf-8')
+ajson = codecs.open('../rhetorical_analysis/applause_count.json' , 'r', encoding='utf-8')
+ljson = codecs.open('../rhetorical_analysis/laughter_count.json' , 'r', encoding='utf-8')
+tfjson = codecs.open('../predictive_modeling/tfidf_vectors.json' , 'r', encoding='utf-8')
 ae = json.load(aejson)
 a = json.load(ajson)
 l = json.load(ljson)

@@ -1,7 +1,7 @@
 import json
 import codecs
 
-f = open('full_parsed.json')
+f = open('../clean_data_formats/full_parsed.json')
 text = json.load(f)
 
 candidates = {}

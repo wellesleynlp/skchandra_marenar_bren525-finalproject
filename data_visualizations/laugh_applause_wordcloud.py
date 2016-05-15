@@ -24,7 +24,7 @@ def plot_cloud(name,freq):
 	plt.close()
 
 def get_freq(name):
-	newf = codecs.open(name+'_keywords.json','r',encoding='utf-8')
+	newf = codecs.open('../rhetorical_analysis/'+name+'_keywords.json','r',encoding='utf-8')
 	f = json.load(newf)
 
 	freq = defaultdict(int)
@@ -58,10 +58,10 @@ def plot_graph(name,val):
 	plt.close()
 	
 def get_top(name):
-	newf = codecs.open(name+'_count.json','r',encoding='utf-8')
+	newf = codecs.open('../rhetorical_analysis/'+name+'_count.json','r',encoding='utf-8')
 	f = json.load(newf)
 
-	lab = codecs.open('labels.json','r',encoding='utf-8')
+	lab = codecs.open('../rhetorical_analysis/labels.json','r',encoding='utf-8')
 	labels = json.load(lab)
 
 	short_names = defaultdict(int)

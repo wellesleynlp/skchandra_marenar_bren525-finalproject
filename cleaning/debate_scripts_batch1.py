@@ -23,8 +23,8 @@ def get_dict(names, date, fpath):
 
 def all_debates(names):
 	repub_debaters = defaultdict()
-	for filename in os.listdir('2012/republican'):
-		filepath = '2012/republican/'+filename
+	for filename in os.listdir('../2012/republican'):
+		filepath = '../2012/republican/'+filename
 		f = codecs.open(filepath,'r',encoding='utf-8') 
 		date = filename.replace('.txt','')
 		date_dict = {}
@@ -44,7 +44,7 @@ for k,v in republicans.iteritems():
 #print republicans[k].keys()
 print republicans['HUNTSMAN']
 
-new_file = open('data/2012_republicans', "w")
+new_file = open('../data/2012_republicans', "w")
 new_file.write(json.dumps(republicans))
 new_file.close() 
 

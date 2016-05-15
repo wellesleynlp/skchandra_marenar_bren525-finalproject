@@ -2,7 +2,7 @@ import codecs
 import json
 from collections import defaultdict
 
-newf = codecs.open('full_parsed_sentences.json' , 'r', encoding='utf-8')
+newf = codecs.open('../clean_data_formats/full_parsed_sentences.json' , 'r', encoding='utf-8')
 f = json.load(newf)
 
 def find_anaphora_epistrophe():
